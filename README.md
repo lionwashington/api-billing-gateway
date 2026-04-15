@@ -1,18 +1,23 @@
 # api-billing-gateway (abg)
 
+> **No credential storage by design** — adapters receive secrets from the caller and keep them only in instance state for the lifetime of the process. See [`docs/SECURITY_AUDIT.md`](./docs/SECURITY_AUDIT.md).
+
 Unified auth + tier + usage middleware for API products shipped across multiple marketplaces
 (RapidAPI, Zyla, Postman, APYHub, ...).
 
 Your business code only reads `request.state.billing.tier`. Adding a new marketplace = new
 `ProxySecretAdapter(...)` instance + env vars. Zero code change.
 
-See `docs/DESIGN.md` for full design. See `../docs/PLATFORM_STRATEGY.md` for the overall
-multi-platform strategy.
+See `docs/DESIGN.md` for full design.
 
-## Install (monorepo, editable)
+## Install
 
 ```bash
-pip install -e ../api-billing-gateway[fastapi]
+# Pin a version from GitHub
+pip install "api-billing-gateway[fastapi] @ git+https://github.com/lionwashington/api-billing-gateway.git@v0.1.0"
+
+# Or editable from a local checkout
+pip install -e .[fastapi]
 ```
 
 ## Minimal wiring
